@@ -1,28 +1,6 @@
-# PGPool
-A simple webservice for account management.
-
-* Keeps a list of unused / in use accounts and which tools/instances they are being used in.
-* Stores all relevant account information like level, XP, team, coins, dust, last location, captcha / ban / shadowban status and many more.
-* Allows updates to these account information via REST API.
-* Logs certain events like when the account gets assigned to a system, when warning / ban flags occur the first time and when they disappear.
-* Instantly usable with every software that utilizes the [MrMime pgoapi wrapper library](https://github.com/sLoPPydrive/MrMime)
-
-**PGPool does NOT use any 3rd party API to actually log in to the accounts. It is purely a management software and therefore safe to use.**
-
-PGPool was designed to allow continuous execution of other tools that need to swap accounts every now and then. A typical scenario is a tool that requests a certain number of accounts to operate with, posting account detail updates to PGPool on a regular basis and if they fail release them to the pool and pick a new one. So instead of having a CSV file as account pool you're having a database with tons of more details and account history.
+#Pool
 
 # Support the Author [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/slop)
-If you like this tool and feel the urgent need to **thank** me, the best way to do it is via **BitCoin (_1PNdXhzvvz2ytCf8mbFdF9MQaABzpjSbJi_)** or **[PayPal](https://www.paypal.me/slop)**. Seriously, that would be so awesome! :-D If you can't or don't want to use PayPal or BitCoin some **level 30+** accounts. You can find me on the **[PGTools Discord Server](https://discord.gg/Vwe5mTa)** and on various other Pokémon GO related Discords as "sLoPPydrive".
-
-# Get Help
-Come join the official **[PGTools Discord Server](https://discord.gg/Vwe5mTa)** for [PGScout](https://github.com/sLoPPydrive/PGScout), [PGNumbra](https://github.com/sLoPPydrive/PGNumbra), [PGPool](https://github.com/sLoPPydrive/PGPool) and the PGTools [RocketMap](https://github.com/sLoPPydrive/RocketMap) and [PokeAlarm](https://github.com/sLoPPydrive/PokeAlarm) forks to get help or just hang around. You are very welcome. :)
-
-# Quick Start
-_Again, be aware that PGPool currently only makes sense if you use any product using the [MrMime pgoapi wrapper library](https://github.com/sLoPPydrive/MrMime) (e.g. PGScout, PGNumbra, my RocketMap branch MIX_SCYTHER)._
-
-The only thing you need is a MySQL database set up and the usual `pip install -r requirements.txt`.
-
-## Setting up PGPool
 
 1. Copy `config.json.sample` to `config.json`.
 2. Adjust settings for listening host:port and your database in `config.json`.
@@ -34,9 +12,9 @@ Some words about the non-obvious options in `config.json`:
 
 ## Importing Accounts
 
-The preferred way to load new accounts into PGPool is to **put them in a CSV file** and let [PGNumbra](https://github.com/sLoPPydrive/PGNumbra) run with `--accounts-file` and `--pgpool-url`. This checks and adds them to PGPool in one run. If you chose a **location near a Pokestop** they will also be at least **level 2** after that.
+The preferred way to load new accounts into PGPool is to **put them in a CSV file** and let [PGNumbra] run with `--accounts-file` and `--pgpool-url`. This checks and adds them to PGPool in one run. If you chose a **location near a Pokestop** they will also be at least **level 2** after that.
 
-Alternatively: With PGPool comes a tool called `pgpool-import.py` which takes a CSV file and creates new account records in the database. These accounts don't have any account details yet (most important ban/shadowban status), so they won't get picked if a client requests any accounts. For them to become *active* you need to check them first, e.g. by running [PGNumbra Tools](https://github.com/sLoPPydrive/PGNumbra) on them. Commandline options of `pgpool-import.py` are:
+Alternatively: With PGPool comes a tool called `pgpool-import.py` which takes a CSV file and creates new account records in the database. These accounts don't have any account details yet (most important ban/shadowban status), so they won't get picked if a client requests any accounts. For them to become *active* you need to check them first, e.g. by running [PGNumbra Tools] on them. Commandline options of `pgpool-import.py` are:
 ```
   -i IMPORT_CSV, --import-csv IMPORT_CSV
              Filename of a CSV file to import accounts from.
@@ -129,7 +107,7 @@ Same as updating accounts (they get updated when they are being released) but th
 
 # Setting up 3rd Party Apps
 ## General MrMime Support
-In your application that utilizes the [MrMime pgoapi wrapper library](https://github.com/sLoPPydrive/MrMime) and that should be linked to PGPool to update account details create or edit `mrmime_config.json` and set at least the following options:
+In your application that utilizes the [MrMime pgoapi wrapper library]and that should be linked to PGPool to update account details create or edit `mrmime_config.json` and set at least the following options:
 
 ```
 {
@@ -157,7 +135,7 @@ Other options are possible, their default values are:
 
 ## RocketMap
 
-PGPool is fully integrated into my own [RocketMap fork (branch MIX_SCYTHER)](https://github.com/sLoPPydrive/RocketMap/tree/MIX_SCYTHER). To use it, download my fork and set the following config parameters:
+PGPool is fully integrated into my own [RocketMap fork (branch MIX_SCYTHER)]. To use it, download my fork and set the following config parameters:
 ```
   --pgpool-url <url>
   --workers <number of regular workers lvl 1-29>
@@ -167,7 +145,7 @@ Now specifying accounts or CSV files will be ignored. Only the number of `--work
 
 ## PGScout
 
-PGPool is fully integrated into [PGScout](https://github.com/sLoPPydrive/PGScout). To use it, set the following config parameters (on command line or `config.ini`):
+PGPool is fully integrated into [PGScout]. To use it, set the following config parameters (on command line or `config.ini`):
 ```
   --pgpool-url <url>
   --pgpool-system-id <system-id>
@@ -175,6 +153,6 @@ PGPool is fully integrated into [PGScout](https://github.com/sLoPPydrive/PGScout
 ```
 Besides configuring the URL and system ID you need to set the number of accounts PGScout should request from PGPool. PGScout by default automatically requests accounts with minimum level 30. 
 
-## PGNumbra
+## Numbra
 
-PGNumbra uses MrMime, so it works with PGPool out of the box. The difference is that PGNumbras `shadowcheck.py` tool sets an automatic `system_id` which is `pgnumbra_` followed by its process ID. Checked accounts are instantly released after being checked.
+PGNumbra uses Mime, so it works with PGPool out of the box. The difference is that PGNumbras `shadowcheck.py` tool sets an automatic `system_id` which is `pgnumbra_` followed by its process ID. Checked accounts are instantly released after being checked.
