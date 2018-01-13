@@ -1,6 +1,6 @@
 #Pool
 
-# Support the Author [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/slop)
+# Support the Author if you whant [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/slop)
 
 1. Copy `config.json.sample` to `config.json`.
 2. Adjust settings for listening host:port and your database in `config.json`.
